@@ -10,8 +10,18 @@ export default class Contact extends Component {
     localStorage["phone"] = e.target.value;
   }
 
+  
+  isValidInput = () => {
+    let input = localStorage.getItem("phone")
+    return /^[1-9]{9}$/.test(input)
+  }
+
   navigate  = () => {
-    this.props.history.push("/finish");
+    if(this.isValidInput()){
+      this.props.history.push("/finish");
+    }else {
+      alert('Invalid number')
+    }
   }
 
   render() {

@@ -10,8 +10,19 @@ export default class About extends Component {
     localStorage["name"] = e.target.value;
   }
 
+  isValidInput = () => {
+    let input = localStorage.getItem("name")
+    if (input.length < 2) return false 
+    else return true
+  }
+
   navigate = () => {
-    this.props.history.push("/contact");
+    if(this.isValidInput()){
+
+      this.props.history.push("/contact");
+    }else {
+      alert('Name not valid')
+    }
   }
 
   render() {
